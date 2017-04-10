@@ -1,4 +1,4 @@
-# CCTSI-BERD Workshop Series on Reproducible Research 
+# [CCTSI-BERD](http://www.ucdenver.edu/research/CCTSI/programs-services/berd/Pages/default.aspx) Workshop Series on Reproducible Research 
 
 Two workshops currently planned:
 
@@ -10,7 +10,7 @@ Two workshops currently planned:
 
 1. Create handouts 
 1. Start ioslides documents
-1. 
+ 
 
 *Initial notes for the version control workshop*
 - Teach using a GUI
