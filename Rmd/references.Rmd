@@ -1,0 +1,4 @@
+
+- [Reproducible web documents with R, knitr, & Markdown](http://cpsievert.github.io/slides/markdown/#/)
+
+
