@@ -12,7 +12,7 @@ Two workshops currently planned:
 1. Start ioslides documents
  
 
-*Initial notes for the version control workshop*
+**Initial notes for the version control workshop**
 - Teach using a GUI
 - First half on local git; second on git remotes
 - Attendees should leave with working git, GUI, GitHub account via example repository
@@ -20,7 +20,7 @@ Two workshops currently planned:
 - Mention git via Rstudio
 - Git: 'lab notebok for the digital world' (via software-carpentry.org)
 
-*Initial notes for reporting workshop*
+**Initial notes for reporting workshop**
 - Stick to rmarkdown? 
 - Focus on Word, PDF, html  --- do via bookdown?? or just rmarkdown??
 - Include equations via mathjax
