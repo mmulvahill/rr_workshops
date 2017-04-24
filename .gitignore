@@ -1,0 +1,26 @@
+################################################################################
+# .gitignore
+#   Filetypes, files, and directories for git to ignore
+################################################################################
+
+# MS Office temporary files
+~$*
+
+# R temporary files
+.Rproj.user   # RStudio project temp files
+.Rhistory     # RStudio command history
+.Rapp.history # RStudio osx history
+.Rdata        # R's directory workspace - want fresh workspace each session
+
+#  Libreoffice temp files
+.~lock*
+
+# OSX directory metadata files
+.DS_Store
+
+# Knitr cache directories
+*_cache
+
+# vim temporary files
+*.swo
+*.swp
