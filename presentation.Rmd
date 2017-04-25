@@ -4,8 +4,9 @@ author: "Matt Mulvahill <br> CU Anschutz School of Medicine <br> Dept. of Pediat
 date: "`r Sys.Date()`"
 output: 
   ioslides_presentation:
-    widescreen: false
+    widescreen: true
     smaller: false
+    css: pres.css
   html_document:
     theme: default
   md_document:
@@ -13,7 +14,11 @@ output:
 ---
 
 
-# Version control with git
+
+
+# “The lab notebook of the digital world” <br> -Software Carpentry  
+
+# Who <br> What <br> Why <br> How 
 
 <div class="notes">
   *Topics to cover*
@@ -24,33 +29,35 @@ output:
   - .gitignore
   - SSH keys
   - where to put data. HPAA issues, 
-<\div>
+</div>
 
-
-# “The lab notebook of the digital world” <br> -Software Carpentry  
-
-# 1. Who <br> 2. What <br> 3. Why <br> 4. How <br> 5. Extras
 
 
 
 <!--------------------------------------
 - Section 1 - Who is version control for?
 -------------------------------------->
-# 1. Who?
+# Who is version control for?
 
 # You!
 <div class="note">
 - For everyone - although the details
-<\div>
+</div>
 
+## [Git User's Survey 2016](https://git.wiki.kernel.org/index.php/GitSurvey2016)
+- Software developers (81%)
+- Researchers (12%)
+- Analysts (6%)
 
 
 <!--------------------------------------
 - Section 2 - what is version control?
 -------------------------------------->
-# 2. What?
+# What is version control?
 
-## Version control systems: software for documenting and tracking changes to files. 
+## Version control system (VCS): software for documenting and tracking changes to files. 
+![](images/ex_file_changes_dark.png)
+ 
 
 <div class="notes">
 
@@ -93,6 +100,11 @@ In this talk we introduce the basics of
 # .gitignore
 
 
+<!---
+Saved text:
+
+<img src="images/ex_file_changes_dark.png" alt="Files" style="width: 400px;"/>
+-->
 
 
 
