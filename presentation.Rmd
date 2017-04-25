@@ -1,0 +1,117 @@
+---
+title: "Git for statisticians"
+author: "Matt Mulvahill <br> CU Anschutz School of Medicine <br> Dept. of Pediatrics"
+date: "`r Sys.Date()`"
+output: 
+  ioslides_presentation:
+    widescreen: false
+    smaller: false
+  html_document:
+    theme: default
+  md_document:
+    variant: markdown_github
+---
+
+
+# Version control with git
+
+<div class="notes">
+  *Topics to cover*
+  - key git commands
+  - Git is the lab notebook
+  - Github is the “dropbox”
+  - 5 key commands
+  - .gitignore
+  - SSH keys
+  - where to put data. HPAA issues, 
+<\div>
+
+
+# “The lab notebook of the digital world” <br> -Software Carpentry  
+
+# 1. Who <br> 2. What <br> 3. Why <br> 4. How <br> 5. Extras
+
+
+
+<!--------------------------------------
+- Section 1 - Who is version control for?
+-------------------------------------->
+# 1. Who?
+
+# You!
+<div class="note">
+- For everyone - although the details
+<\div>
+
+
+
+<!--------------------------------------
+- Section 2 - what is version control?
+-------------------------------------->
+# 2. What?
+
+## Version control systems: software for documenting and tracking changes to files. 
+
+<div class="notes">
+
+|Term       | Description                                         |
+|-----------|-----------------------------------------------------|
+|git        | software/tool for creating and managing repositories|
+|repository | a folder with files tracked by git|
+|remote     | an external location where the repository is copied|
+
+</div>
+
+
+## Git is currently top version control system
+
+<div class="notes">
+- Largely due to being a 'distributed' VCS
+- Ubiquitous in software development 
+- Increasingly seen as a key tool in conducting reproducible statistical research.  
+</div>
+
+##  
+
+# Git locally
+
+## Basic git basics
+
+
+In this talk we introduce the basics of 
+- using git through the command line and a GUI (Rstudio or GitKraken)
+- the difference between a git repository and a remote (such as GitHub)
+- implementation issues specific to statistical analyses. 
+
+----
+
+![](images/gitmerge-giphy.gif)
+
+----
+
+
+# .gitignore
+
+
+
+
+
+
+
+# References & Resources
+
+- [Git for Humans! by Alice Bartlette](https://speakerdeck.com/alicebartlett/git-for-humans)
+- [line endings in git](http://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/)
+- [Happy Git with R by Jenny Bryan](http://happygitwithr.com)
+- [Git cheatsheet - all functions by the domains they operate across](http://ndpsoftware.com/git-cheatsheet.html#loc=local_repo;)
+- [What is Version Control? by Atlassian (BitBucket)](https://www.atlassian.com/git/tutorials/what-is-version-control)
+- [Large file storage with Git](https://git-lfs.github.com/)
+
+
+
+
+```{r, include=FALSE, eval=FALSE}
+# This document was created with Rmarkdown.  The source code can be compiled with:
+library(rmarkdown)
+render("presentation.Rmd", output_format = "all", output_dir = "output") 
+```
