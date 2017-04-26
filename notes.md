@@ -28,9 +28,10 @@ ABSTRACT:
 
 Key git Commands:
 - git init
+- git add
 - git commit
-- git push 
-- git pull
 - git status
 - git log
+- git push 
+- git pull
 
