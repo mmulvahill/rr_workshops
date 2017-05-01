@@ -1,8 +1,6 @@
 
 
-**Notes copied from Apple Notes**
-
-Git Presentation:
+*(Notes copied from Apple Notes)*
 
 Introduction to Git and Its Implementation in the Statistical Workflow
 
@@ -11,7 +9,6 @@ Introduction to Git and Its Implementation in the Statistical Workflow
 - 5 key commands
 - SSH keys
 - where to put data. HPAA issues, 
-
 
 
 TITLE: Introduction to Git and Version Control in the Statistical Workflow
@@ -34,4 +31,5 @@ Key git Commands:
 - git log
 - git push 
 - git pull
+
 
