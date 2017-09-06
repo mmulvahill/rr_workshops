@@ -1,0 +1,34 @@
+# files for git to ignore.  these will not be copied to repository
+
+# Repository private -- saving data
+# *.csv
+# *.xlsx
+# *.xls
+# *.dat
+# *.Rdata
+# *.sas7bdat
+
+
+
+#  vim temp files
+*.swp
+*.swo
+*~
+#  libreoffice temp files
+.~lock*
+#  rstudio project file
+#*.Rproj
+#  osx dir metadata
+.DS_Store
+#  rstudio project temp files
+.Rproj.user
+#  rstudio command history
+.Rhistory
+#  rstudio osx history
+.Rapp.history
+#  R's directory workspace - want fresh workspace each session
+.Rdata
+# MS office temp files
+~$*
+# Cache
+*_cache
