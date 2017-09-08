@@ -1,0 +1,44 @@
+---
+title: "Reproducible Reporting with RMarkdown"
+author: 
+  - Matt Mulvahill
+  - Colorado Biostatistical Consortium
+date: "9/7/2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Overview
+
+1. Overview of the Aspects of Reproducible Research (link to ASA doc)
+1. Basic Guidelines for Scientific Computing  (folder structure, relative paths, etc.)
+1. Reproducible Reporting -- What is it?
+1. Motivating Examples (patients added, data revised, reviewer questions, reader questions)
+1. Use Scenarios -- Analysis notebooks, analysis reports, manuscript, other (presentations, web pages, etc.)
+1. Technologies/Tools ("pipelines") (Rmd -> md -> html/doc/pdf/ )
+1. Rmarkdown via RStudio
+
+
+
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
