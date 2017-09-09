@@ -1,0 +1,31 @@
+
+.emphasized{
+  font-size: 2em
+}
+
+.verticalcenter{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+}
+
+.verticalcenterdiv{
+	padding: 10% 0;
+}
+
+.lotsoftext{
+	font-size: 0.85em
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 2rem;
+  background-color: #848484;
+	color: #f9f9f9;
+	font-size: 0.65em
+}
+
+
