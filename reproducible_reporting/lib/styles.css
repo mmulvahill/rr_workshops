@@ -10,11 +10,11 @@
 }
 
 .verticalcenterdiv{
-	padding: 10% 0;
+  padding: 10% 0;
 }
 
 .lotsoftext{
-	font-size: 0.85em
+  font-size: 0.85em
 }
 
 .footer {
@@ -24,8 +24,17 @@
   left: 0;
   padding: 2rem;
   background-color: #848484;
-	color: #f9f9f9;
-	font-size: 0.65em
+  color: #f9f9f9;
+  font-size: 0.65em
 }
 
+.codefont pre {
+  font-size: 0.65em;
+  line-height: 1.1em;
+}
 
+.center img {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
