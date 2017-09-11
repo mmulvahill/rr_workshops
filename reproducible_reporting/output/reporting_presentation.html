@@ -88,7 +88,7 @@
 
   </style>
 
-  <link href="data:text/css;charset=utf-8,%0A%2Eemphasized%7B%0Afont%2Dsize%3A%202em%0A%7D%0A%2Everticalcenter%7B%0Aposition%3A%20relative%3B%0Atop%3A%2050%25%3B%0Atransform%3A%20translateY%28%2D50%25%29%3B%20%7D%0A%2Everticalcenterdiv%7B%0Apadding%3A%2010%25%200%3B%0A%7D%0A%2Elotsoftext%7B%0Afont%2Dsize%3A%200%2E85em%0A%7D%0A%2Efooter%20%7B%0Aposition%3A%20absolute%3B%0Aright%3A%200%3B%0Abottom%3A%200%3B%0Aleft%3A%200%3B%0Apadding%3A%202rem%3B%0Abackground%2Dcolor%3A%20%23848484%3B%0Acolor%3A%20%23f9f9f9%3B%0Afont%2Dsize%3A%200%2E65em%0A%7D%0A%2Eshrinktext085%20%7B%0Afont%2Dsize%3A0%2E25em%0A%7D%0A" rel="stylesheet" type="text/css" />
+  <link href="data:text/css;charset=utf-8,%0A%2Eemphasized%7B%0Afont%2Dsize%3A%202em%0A%7D%0A%2Everticalcenter%7B%0Aposition%3A%20relative%3B%0Atop%3A%2050%25%3B%0Atransform%3A%20translateY%28%2D50%25%29%3B%20%7D%0A%2Everticalcenterdiv%7B%0Apadding%3A%2010%25%200%3B%0A%7D%0A%2Elotsoftext%7B%0Afont%2Dsize%3A%200%2E85em%0A%7D%0A%2Efooter%20%7B%0Aposition%3A%20absolute%3B%0Aright%3A%200%3B%0Abottom%3A%200%3B%0Aleft%3A%200%3B%0Apadding%3A%202rem%3B%0Abackground%2Dcolor%3A%20%23848484%3B%0Acolor%3A%20%23f9f9f9%3B%0Afont%2Dsize%3A%200%2E65em%0A%7D%0A%2Ecodefont%20pre%20%7B%0Afont%2Dsize%3A%200%2E65em%3B%0Aline%2Dheight%3A%201%2E1em%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -109,8 +109,8 @@
 <!--
 ## Overview
 # 
-# 1. Overview of the Aspects of Reproducible Research (link to ASA doc)
-# 1. Basic Guidelines for Scientific Computing  (folder structure, relative paths, etc.)
+# X 1. Overview of the Aspects of Reproducible Research (link to ASA doc)
+# X 1. Basic Guidelines for Scientific Computing  (folder structure, relative paths, etc.)
 # 1. Reproducible Reporting - What is it?
 # 1. Motivating Examples (patients added, data revised, reviewer questions, reader questions)
 # 1. Use Scenarios - Analysis notebooks, analysis reports, manuscript, other (presentations, web pages, etc.)
@@ -268,11 +268,11 @@ ASA Recommendations to Funding Agencies Supporting Reproducible Research - <span
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
 
 <div class="emphasized verticalcenterdiv">
-<ol>
+<ul>
 <li>Scientific computing basics</li>
 <li>Reproducible reports</li>
 <li>Version control</li>
-</ol></div>
+</ul></div>
 
 <div class="footer">
 Our Agenda</div>
@@ -282,11 +282,11 @@ Our Agenda</div>
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-6">
 
 <div class="emphasized verticalcenterdiv">
-<ul>
+<ol>
 <li>Naming files and directories</li>
 <li>Structuring projects and related coding conventions</li>
 <li>Coding style</li>
-</ul></div>
+</ol></div>
 
 <div class="footer">
 Scientific computing basics</div>
@@ -343,9 +343,10 @@ Scientific computing basics</div>
 
 </article></slide><slide class=''><hgroup><h2>Project structure</h2></hgroup><article  id="project-structure-1">
 
-<div class="lotsoftext">
-<pre >## .
+<div class="codefont">
+<pre >## reproducible_reporting/
 ## ├── build.R
+## ├── build.R.tmp.R
 ## ├── docs
 ## │   ├── rmarkdown-cheatsheet-2.0.pdf
 ## │   └── rmarkdown-reference.pdf
@@ -355,23 +356,36 @@ Scientific computing basics</div>
 ## ├── output
 ## │   ├── reporting_presentation.html
 ## │   └── reporting_presentation.md
+## ├── reporting_presentation.html
+## ├── reporting_presentation.md
+## ├── reporting_presentation.Rmd
 ## ├── reproducible_reporting.Rproj
 ## └── Rmd
+##     ├── 01_introduction.Rmd
+##     ├── 02_computing_basics.Rmd
+##     ├── 03_intro_to_reporting.Rmd
+##     ├── 04_rmarkdown.Rmd
+##     ├── 05_rmdexample.Rmd
 ##     ├── myexample.Rmd
 ##     ├── references.Rmd
-##     └── reporting_presentation.Rmd
+##     └── reporting_presentation.html
 ## 
-## 4 directories, 11 files</pre></div>
+## 4 directories, 20 files</pre></div>
+
+</article></slide><slide class=''><hgroup><h2>Project structure</h2></hgroup><article  id="project-structure-2">
 
 <pre >MyProject/
     |— data/
-            |—rawdata/
+          |— rawdata/
     |— documents/
     |— libraries/
     |— output/
-            |— figures/
-            |— tables/
+          |— figures/
+          |— tables/
+          |- myreport.docx
     |— R/
+    |- Rmd/
+          |- myreport.Rmd
     |— sas/
     |— build.R
     |— README.txt</pre>
@@ -379,13 +393,54 @@ Scientific computing basics</div>
 <div class="footer">
 Scientific computing basics</div>
 
-<!-- ************************** -->
+</article></slide><slide class=''><hgroup><h2>Code style</h2></hgroup><article  id="code-style">
 
-<!-- ******* REFERENCES ******* -->
+<ul>
+<li>All code files should be executable, and sequentially so.</li>
+<li>Minimize extraneous operations, or move to an &#39;appendix&#39; script.</li>
+<li>Limit line length (80 or 100 characters)</li>
+<li>Limit file length to &quot;something reasonable&quot; (~ 100 lines)</li>
+</ul>
 
-<!-- ************************** -->
+<div class="footer">
+Scientific computing basics</div>
+
+</article></slide><slide class=''><hgroup><h2>Code style</h2></hgroup><article  id="code-style-1">
+
+<ul>
+<li>Use comments to explain &#39;why&#39;, good code to explain &#39;what&#39;.</li>
+<li>Use headers at top of file and to denote major sections.</li>
+<li>Human readable first, optimization second.</li>
+<li>Consistent indenting, capitalization, and spacing.
+
+<ul>
+<li>Use spaces around operators =+-/*&amp;%$ and after commas.</li>
+</ul></li>
+<li>Consistency is key!</li>
+<li>Use a <a href='https://google.github.io/styleguide/Rguide.xml' title=''>style</a> <a href='http://adv-r.had.co.nz/Style.html' title=''>guide</a></li>
+</ul>
+
+<div class="footer">
+Scientific computing basics</div>
+
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Reproducible reporting</h2></hgroup><article  id="reproducible-reporting">
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
+
+<p>What is reproducible reporting?</p>
+
+<blockquote>
+<p>A report containing integrated code that creates all tables, plots, and statistics included within it.</p>
+</blockquote>
+
+<div class="footer">
+Reproducible reporting</div>
+
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>RMarkdown</h2></hgroup><article  id="rmarkdown">
+
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Hands-on Example</h2></hgroup><article  id="hands-on-example">
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
 
 <div class="footer">
 References</div>

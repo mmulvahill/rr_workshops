@@ -1,54 +1,18 @@
----
-title: "Reproducible Reporting with RMarkdown"
-author: 
-  - Matt Mulvahill
-  - Colorado Biostatistical Consortium - Department of Biostatistics - CSPH
-date: "9/7/2017"
-output: 
-  ioslides_presentation:
-    css: ../../lib/styles.css
-  md_document:
-    variant: markdown_github
-bibliography: ../../lib/references.bib
----
+<!--
+##
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+<div class="verticalcenterdiv">
+> Reproducibility is the only thing an investigator can guarantee about a study.
+
+[Roger
+Peng](https://simplystatistics.org/2014/06/06/the-real-reason-reproducible-research-is-important/)
+</div>
+
+<div class="footer"> Introduction </div>
+-->
 
 
-```{r notes, echo=FALSE}
-## Overview
-# 
-# 1. Overview of the Aspects of Reproducible Research (link to ASA doc)
-# 1. Basic Guidelines for Scientific Computing  (folder structure, relative paths, etc.)
-# 1. Reproducible Reporting -- What is it?
-# 1. Motivating Examples (patients added, data revised, reviewer questions, reader questions)
-# 1. Use Scenarios -- Analysis notebooks, analysis reports, manuscript, other (presentations, web pages, etc.)
-# 1. Technologies/Tools ("pipelines") (Rmd -> md -> html/doc/pdf/ )
-# 1. Rmarkdown via RStudio
-#
-```
-
-## Prereqs -- Software to install
-
-**Test software install on fresh computer**
-
-- [R](https://cloud.r-project.org/)
-- [RStudio](https://www.rstudio.com/products/rstudio/download/#download) 
-
-And if you are not using RStudio, you will also need these:
-
-- `rmarkdown` package: `install.packages("rmarkdown")`
-- `knitr` package: `install.packages("knitr")`	
-- [pandoc](https://pandoc.org/installing.html)
-
-
-# Defining Reproducibility
-
-
-
-## 
+##
 
 <div class="verticalcenterdiv">
 - Reproducibility
@@ -84,13 +48,13 @@ And if you are not using RStudio, you will also need these:
 - Use of ***version control*** for all code development.
 - Exclusive use of ***open-source software***, freely available worldwide.
 - ***End-to-end scripting*** of research (data processing/cleaning, statistical analyses,
-	visualizations, and ***report/manuscript generation***) with full workflow made
-	available to others.
+  visualizations, and ***report/manuscript generation***) with full workflow made
+  available to others.
 - Use of ***container/virtual machine tools*** to capture software versions,
-	dependencies, and platform specifics.
+  dependencies, and platform specifics.
 - ***Publication of code*** in public repositories, as with data.
 - Implementing algorithms on standard computational platforms (R/Python
-	packages, etc.)
+  packages, etc.)
 </div>
 
 <div class="footer"> ASA Recommendations to Funding Agencies Supporting Reproducible Research - @Broman2017</div>
@@ -107,13 +71,13 @@ And if you are not using RStudio, you will also need these:
 - <div class="gray">Use of ***version control*** for all code development.</div>
 - <div class="gray">Exclusive use of ***open-source software***, freely available worldwide.</div>
 - <div class="gray">***End-to-end scripting*** of research (data processing/cleaning, statistical analyses,
-	visualizations, and ***report/manuscript generation***) with full workflow made
-	available to others.</div>
+  visualizations, and ***report/manuscript generation***) with full workflow made
+  available to others.</div>
 - <div class="gray">Use of ***container/virtual machine tools*** to capture software versions,
-	dependencies, and platform specifics.</div>
+  dependencies, and platform specifics.</div>
 - ***Publication of code*** in public repositories, as with data.
 - <div class="gray">Implementing algorithms on standard computational platforms (R/Python
-	packages, etc.)</div>
+  packages, etc.)</div>
 
 </div>
 
@@ -131,10 +95,10 @@ And if you are not using RStudio, you will also need these:
 - <div class="gray">Use of ***version control*** for all code development.</div>
 - <div class="gray">Exclusive use of ***open-source software***, freely available worldwide.</div>
 - <div class="gray">***End-to-end scripting*** of research (data processing/cleaning, statistical analyses,
-	visualizations, and ***report/manuscript generation***) with full workflow made
-	available to others.</div>
+  visualizations, and ***report/manuscript generation***) with full workflow made
+  available to others.</div>
 - Use of ***container/virtual machine tools*** to capture software versions,
-	dependencies, and platform specifics.
+  dependencies, and platform specifics.
 - <div class="gray">***Publication of code*** in public repositories, as with data.</div>
 - Implementing algorithms on standard computational platforms (R/Python
 packages, etc.)
@@ -155,13 +119,13 @@ packages, etc.)
 - Use of ***version control*** for all code development.
 - Exclusive use of ***open-source software***, freely available worldwide.
 - ***End-to-end scripting*** of research (data processing/cleaning, statistical
-	analyses, visualizations, and ***report/manuscript generation***) with full workflow
-	made available to others.
+  analyses, visualizations, and ***report/manuscript generation***) with full workflow
+  made available to others.
 - <div class="gray">Use of ***container/virtual machine tools*** to capture software versions,
-	dependencies, and platform specifics.</div>
+  dependencies, and platform specifics.</div>
 - <div class="gray">***Publication of code*** in public repositories, as with data.</div>
 - <div class="gray">Implementing algorithms on standard computational platforms (R/Python
-	packages, etc.)</div>
+  packages, etc.)</div>
 
 </div>
 
@@ -175,24 +139,11 @@ packages, etc.)
 ## 
 
 <div class="emphasized verticalcenterdiv">
-1. Scientific computing basics
-1. Reproducible reports
-1. Version control
+- Scientific computing basics
+- Reproducible reports
+- Version control
 </div>
 
-<div class="footer"> . </div>
+<div class="footer"> Our Agenda </div>
 
-#
-
-## Slide with R Output
-
-```{r cars, echo = TRUE}
-summary(cars)
-```
-
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
 

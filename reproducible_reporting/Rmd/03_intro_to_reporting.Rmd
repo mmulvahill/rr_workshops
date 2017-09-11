@@ -1,0 +1,93 @@
+
+## {.codefont}
+
+**What is a reproducible report?**
+
+A report where the text content is combined with the computer code necessary
+for generating all included tables, plots, and statistics.
+
+```{r rr-ex-plot, echo=TRUE, fig.width=4, fig.asp=0.6}
+data(mtcars)
+mtcars <- mtcars %>% mutate(cyl = factor(cyl))
+ggplot(mtcars, aes(x = hp, y = mpg, color = cyl)) +
+  geom_point() 
+```
+
+<div class="footer"> Reproducible reporting </div>
+
+##
+
+**Why reproducible reports**
+
+- Reasons:
+    - Dataset updated
+    - Patients added/removed from analysis
+    - Consistency between tables and text
+    - Changes due to investigator requests
+    - Changes due to reviewer comments
+    - Avoid tedium
+
+<div class="footer"> Reproducible reporting </div>
+
+
+##
+
+**Three related concepts**
+
+- Dynamic documentation
+    - Focus is code documentation
+    - e.g. doxygen (C++), roxygen2 (R)
+- Literate program
+    - Focus is explaining the code/process
+    - e.g. R Markdown (R Notebook), Jupyter notebook
+- Reproducible report
+    - Focus is the report -- interpretation and results
+    - e.g. R Markdown (to PDF, Word, HTML), Rnw/LaTeX to PDF
+
+***TODO: COME BACK TO THIS***
+
+<div class="footer"> Reproducible reporting </div>
+
+
+## {.center}
+
+<!--![](https://rstudioblog.files.wordpress.com/2016/09/screen-shot-2016-09-14-at-12-12-35-pm.png?w=639)-->
+![](https://rstudioblog.files.wordpress.com/2016/09/notebook-preview.png?w=630#038;h=405)
+<div class="footer"> Reproducible reporting </div>
+
+
+##
+
+**Our options**
+
+- R + LaTeX (PDF)
+- R Markdown (HTML, Word, PDF)
+- Jupyter notebooks (HTML)
+- [StatTag](http://sites.northwestern.edu/stattag/) (Word)
+
+<img src="lib/images/rstudio_logo_large.png", width=40%>
+<img src="lib/images/jupyter_logo_square.png", width=20%>
+<img src="lib/images/stattag_logo.png">
+
+<div class="footer"> Reproducible reporting </div>
+
+##
+
+**Why R Markdown**
+
+- Variety of outputs
+- Variety of coding languages
+- Focus on text and analysis, formatting later
+- Simple, but extensible
+- Free Open Source pipeline (\*see Principles of Reproducibility), with options
+  for incorporating proprietary software.
+
+<div class="footer"> Reproducible reporting </div>
+
+
+##
+
+- \LaTeX
+- Markdown
+
+<div class="footer"> Reproducible reporting </div>

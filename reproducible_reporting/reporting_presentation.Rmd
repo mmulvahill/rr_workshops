@@ -1,0 +1,105 @@
+---
+title: "Reproducible Reporting with RMarkdown"
+author: 
+  - Matt Mulvahill
+  - Colorado Biostatistical Consortium - Department of Biostatistics - CSPH
+date: "9/7/2017"
+output: 
+  ioslides_presentation:
+    css: lib/styles.css
+    logo: lib/images/cctsi_logo.png
+  md_document:
+    variant: markdown_github
+bibliography: lib/references.bib
+---
+
+
+```{r workspace-setup, include=FALSE}
+# Package and environ options
+options(scipen = 99)
+options(stringsAsFactors = FALSE)
+options(width = 300) # specific to my monitors/working environment
+
+# Load packages
+library(tidyverse)
+library(knitr)
+library(rmarkdown)
+```
+
+```{r knitr-setup, include=FALSE}
+knitr::opts_chunk$set(fig.path   = 'output/figures/',
+                      fig.align = "center",
+                      cache      = FALSE,
+                      echo       = FALSE,
+                      message    = TRUE,
+                      warning    = TRUE)
+knitr::opts_knit$set(eval.after = c("fig.cap"))
+```
+
+
+
+<!--
+## Overview
+# 
+# X 1. Overview of the Aspects of Reproducible Research (link to ASA doc)
+# X 1. Basic Guidelines for Scientific Computing  (folder structure, relative paths, etc.)
+# 1. Reproducible Reporting - What is it?
+# 1. Motivating Examples (patients added, data revised, reviewer questions, reader questions)
+# 1. Use Scenarios - Analysis notebooks, analysis reports, manuscript, other (presentations, web pages, etc.)
+# 1. Technologies/Tools ("pipelines") (Rmd -> md -> html/doc/pdf/ )
+# 1. Rmarkdown via RStudio
+#
+-->
+
+## Prereqs -- Software to install
+
+**Test software install on fresh computer**
+
+- [R](https://cloud.r-project.org/)
+- [RStudio](https://www.rstudio.com/products/rstudio/download/#download) 
+
+**If you are not using RStudio, you will also need these:**
+
+- [pandoc](https://pandoc.org/installing.html)
+- `rmarkdown` package
+- `knitr` package
+
+```{r eval=FALSE, echo=TRUE}
+install.packages(c("rmarkdown", "knitr"))
+```
+
+
+# Defining Reproducibility
+
+```{r intro, child="Rmd/01_introduction.Rmd"}
+```
+
+# Scientific computing basics
+
+```{r scicomp, child="Rmd/02_computing_basics.Rmd"}
+```
+
+# Reproducible reporting
+
+```{r reproduciblereports, child="Rmd/03_intro_to_reporting.Rmd"}
+```
+
+# RMarkdown
+
+```{r rmarkdown, child="Rmd/04_rmarkdown.Rmd"}
+```
+
+# Hands-on Example
+
+```{r rmdexample, child="Rmd/05_rmdexample.Rmd"}
+```
+
+## 
+
+<div class="footer"> References </div>
+
+
+
+```{r compile-doc, eval=FALSE, include=FALSE}
+render("reporting_presentation.Rmd", output_format = "all")
+```

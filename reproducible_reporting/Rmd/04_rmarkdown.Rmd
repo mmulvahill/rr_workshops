@@ -1,0 +1,28 @@
+
+##
+
+**The process**
+
+R Markdown (markdown + code) -> knitr -> Markdown -> Pandoc -> HTML/Word
+R Markdown (markdown + code) -> knitr -> LaTeX -> pdflatex ->  PDF
+
+<div class="footer"> R Markdown (.Rmd) </div>
+
+##
+
+**Markdown**
+
+- YAML header
+- Code chunks
+
+<div class="footer"> R Markdown (.Rmd) </div>
+
+
+##
+
+**Document structure**
+
+- YAML header
+- Code chunks
+
+<div class="footer"> R Markdown (.Rmd) </div>
