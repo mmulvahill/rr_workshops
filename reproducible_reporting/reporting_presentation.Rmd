@@ -51,6 +51,13 @@ knitr::opts_knit$set(eval.after = c("fig.cap"))
 #
 -->
 
+
+## Materials
+
+http://github.com/mmulvahill/rr_workshops.git
+
+
+
 ## Prereqs -- Software to install
 
 **Test software install on fresh computer**
@@ -93,6 +100,18 @@ install.packages(c("rmarkdown", "knitr"))
 
 ```{r rmdexample, child="Rmd/05_rmdexample.Rmd"}
 ```
+
+# Advanced topics
+
+```{r rmdexample, child="Rmd/05_rmdexample.Rmd"}
+```
+
+
+## 
+
+- [Reproducible web documents with R, knitr, & Markdown](http://cpsievert.github.io/slides/markdown/#/)
+
+<div class="footer"> Useful links </div>
 
 ## 
 

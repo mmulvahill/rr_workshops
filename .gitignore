@@ -1,6 +1,6 @@
 # files for git to ignore.  these will not be copied to repository
 
-# Repository private -- saving data
+attendance/data/*
 # *.csv
 # *.xlsx
 # *.xls

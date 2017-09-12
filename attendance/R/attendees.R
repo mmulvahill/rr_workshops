@@ -8,7 +8,7 @@ library(stringr)
 options(width = 300)
 
 getwd()
-dat <- read_excel("./data/ReproducibleResearchParticipants2017-090517.xlsx")
+dat <- read_excel("./data/ReproducibleResearchParticipants2017 - 090517.xlsx")
 
 onames <- names(dat)
 
@@ -31,7 +31,5 @@ dat %>% #select(sessions)
 
 
 dat %>% select(contains("name"), email, role, comments) %>% filter(!is.na(comments)) %>% .$comments
-
-
 
 

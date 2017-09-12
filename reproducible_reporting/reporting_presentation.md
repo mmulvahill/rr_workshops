@@ -10,6 +10,11 @@
 # 1. Rmarkdown via RStudio
 #
 -->
+Materials
+---------
+
+<http://github.com/mmulvahill/rr_workshops.git>
+
 Prereqs -- Software to install
 ------------------------------
 
@@ -193,8 +198,12 @@ Scientific computing basics
     ## ├── build.R
     ## ├── docs
     ## │   ├── rmarkdown-cheatsheet-2.0.pdf
-    ## │   ├── rmarkdown-reference.pdf
-    ## │   └── scholar.bib
+    ## │   └── rmarkdown-reference.pdf
+    ## ├── examples
+    ## │   ├── justmarkdown.html
+    ## │   ├── justmarkdown.md
+    ## │   ├── myexample.docx
+    ## │   └── myexample.Rmd
     ## ├── lib
     ## │   ├── images
     ## │   ├── references.bib
@@ -203,6 +212,7 @@ Scientific computing basics
     ## │   ├── figures
     ## │   ├── reporting_presentation.html
     ## │   └── reporting_presentation.md
+    ## ├── README.md
     ## ├── reporting_presentation.html
     ## ├── reporting_presentation.md
     ## ├── reporting_presentation.Rmd
@@ -213,11 +223,9 @@ Scientific computing basics
     ##     ├── 03_intro_to_reporting.Rmd
     ##     ├── 04_rmarkdown.Rmd
     ##     ├── 05_rmdexample.Rmd
-    ##     ├── myexample.Rmd
-    ##     ├── references.Rmd
-    ##     └── reporting_presentation.html
+    ##     └── 06_advanced.Rmd
     ## 
-    ## 6 directories, 20 files
+    ## 7 directories, 22 files
 
 **Project structure**
 
@@ -280,13 +288,19 @@ Reproducible reporting
 
 **Why reproducible reports**
 
--   Reasons:
-    -   Dataset updated
-    -   Patients added/removed from analysis
-    -   Consistency between tables and text
-    -   Changes due to investigator requests
-    -   Changes due to reviewer comments
-    -   Avoid tedium
+To tie reported statistics to the code that creates them so other researchers can understand and verify results.
+
+But really to make your life easier when:
+
+-   Datasets updated
+-   Patients added/removed from analysis
+-   Changes required due to investigator requests
+-   Changes required due to reviewer comments
+
+By allowing you to:
+
+-   Create consistency between tables and text
+-   Avoid tedium
 
 Reproducible reporting
 
@@ -302,8 +316,6 @@ Reproducible reporting
     -   Focus is the report -- interpretation and results
     -   e.g. R Markdown (to PDF, Word, HTML), Rnw/LaTeX to PDF
 
-***TODO: COME BACK TO THIS***
-
 Reproducible reporting
 
 <!--![](https://rstudioblog.files.wordpress.com/2016/09/screen-shot-2016-09-14-at-12-12-35-pm.png?w=639)-->
@@ -312,46 +324,286 @@ Reproducible reporting
 
 **Our options**
 
--   R + LaTeX
--   R Markdown
--   Jupyter notebooks
--   [StatTag](http://sites.northwestern.edu/stattag/)
+-   R + LaTeX (PDF)
+-   R Markdown (HTML, Word, PDF)
+-   Jupyter notebooks (HTML)
+-   [StatTag](http://sites.northwestern.edu/stattag/) (Word)
 
 <img src="lib/images/rstudio_logo_large.png", width=40%> <img src="lib/images/jupyter_logo_square.png", width=20%> <img src="lib/images/stattag_logo.png">
 
 Reproducible reporting
 
-**Markup languages**
+**Why [R Markdown](http://rmarkdown.rstudio.com/authoring_quick_tour.html)**
 
--   
--   Markdown
+-   Variety of outputs
+-   Variety of analysis, data processing, and coding languages
+-   Focus on text and analysis, formatting later
+-   Simple, but extensible
+-   Free Open Source pipeline (\*see Principles of Reproducibility), with options for incorporating proprietary software.
 
 Reproducible reporting
 
--   
--   Markdown
+**The process in RStudio**
+
+1.  Write an R Markdown file (.Rmd)
+2.  Press a button
+3.  Get a pretty HTML, Word, or PDF file
+
+<img src="lib/images/rstudio-knit.png">
+
+-   If not using RStudio, use `render()` from the `rmarkdown` package
+
+Reproducible reporting
+
+**The process behind the scenes**
+
+<center>
+<img src="lib/images/RMarkdownFlow.png"> <img src="lib/images/RMarkdownOutputFormats.png", width=30%>
+</center>
+-   Both the "knit" button and the `render()` function automate the knitr-to-output pipeline.
+
+Reproducible reporting
+
+**The process behind the scenes**
+
+-   The R package [knitr](https://yihui.name/knitr/) converts R code to markdown (or LaTeX) formatted text.
+-   The external software [pandoc](https://pandoc.org/) converts the resulting markdown document to the final format of your choice.
 
 Reproducible reporting
 
 RMarkdown
 =========
 
+**Writing an Rmarkdown file**
+
+First create a plain text file and save it as a .Rmd file.
+
+1.  Markdown
+2.  YAML header
+3.  Code -- chunks and inline
+4.  [Chunk (knitr) options](https://yihui.name/knitr/options/)
+
+Anatomy of an R Markdown file (.Rmd)
+
 **Markdown**
 
--   YAML header
--   Code chunks
+Simple markup language originally designed for quickly making webpages
 
-R Markdown (.Rmd)
+    ### Header 3
 
-**Document structure**
+    - list item 1
+    - list item 2
+    - list item 3
 
--   YAML header
--   Code chunks
+    1. enemated item 1
+    1. enemated item 2
+    1. enemated item 3
 
-R Markdown (.Rmd)
+    **Bold**, *italicized*, _underlined_ text
+
+Anatomy of an R Markdown file (.Rmd)
+
+**Markdown**
+
+Simple markup language originally designed for quickly making webpages
+
+### Header 3
+
+-   list item 1
+-   list item 2
+-   list item 3
+
+1.  enemated item 1
+2.  enemated item 2
+3.  enemated item 3
+
+**Bold**, *italicized*, ~~strikethrough~~ text
+
+Anatomy of an R Markdown file (.Rmd)
+
+**YAML header**
+
+-   YAML is a data serialization language.
+-   RMarkdown uses it to define document metadata and configuration.
+-   Should be at the top of the file and preceded and succeeded by three hyphens.
+
+<!-- -->
+
+    ---
+    title: "Example Analysis for Reproducible Reporting Workshop"
+    author: "Matt Mulvahill"
+    date: "September 6, 2017"
+    output: word_document
+    ---
+
+Anatomy of an R Markdown file (.Rmd)
+
+**Code chunks**
+
+-   Started with three backticks (upper left-most key, below ESC), and open/close curly braces. Chunk is ended with three backticks.
+-   Within curly braces we denote the 'engine'/language ("r"), a name for the code chunk, then any chunk options we want.
+
+<pre><code>```{r my_model_fit, echo=TRUE}
+# fit model
+data(mtcars)
+mtcars$cyl <- factor(mtcars$cyl)
+fit <- lm(mpg ~ cyl, data = mtcars)
+```</code></pre>
+<pre><code>```{r my_model_summary, echo = TRUE, results='markdown'}
+# create summary table
+fit %>% broom::tidy(.) %>%
+  mutate_at(vars(estimate:statistic), round, digits=2) %>%
+  mutate_at(vars(p.value), qwraps2::frmtp) %>% 
+  kable
+```</code></pre>
+Anatomy of an R Markdown file (.Rmd)
+
+**Code chunk example**
+
+``` r
+# fit model
+data(mtcars)
+mtcars$cyl <- factor(mtcars$cyl)
+fit <- lm(mpg ~ cyl, data = mtcars)
+
+# extract and format coefficients table
+coef_table <- fit %>% broom::tidy(.) %>%
+  mutate_at(vars(estimate:statistic), round, digits=2) %>%
+  mutate_at(vars(p.value), qwraps2::frmtp, markup = "markup")
+```
+
+``` r
+# print formatted coefficients table
+coef_table %>%
+  kable(., "html", table.attr = "class=\"mytable\"",
+        caption = "Table 1. Regression coeffients and related statistics")
+```
+
+<table class="mytable">
+<caption>
+Table 1. Regression coeffients and related statistics
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:left;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+26.66
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+<td style="text-align:right;">
+27.44
+</td>
+<td style="text-align:left;">
+P &lt; 0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cyl6
+</td>
+<td style="text-align:right;">
+-6.92
+</td>
+<td style="text-align:right;">
+1.56
+</td>
+<td style="text-align:right;">
+-4.44
+</td>
+<td style="text-align:left;">
+P = 0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cyl8
+</td>
+<td style="text-align:right;">
+-11.56
+</td>
+<td style="text-align:right;">
+1.30
+</td>
+<td style="text-align:right;">
+-8.90
+</td>
+<td style="text-align:left;">
+P &lt; 0.0001
+</td>
+</tr>
+</tbody>
+</table>
+Anatomy of an R Markdown file (.Rmd)
+
+**Inline code example**
+
+-   Inline code begins with a backtick and the engine name (r), and ends with a single backtick
+
+``` r
+# Prepare inline stats from table
+coef_6cyl <- coef_table %>% filter(term == 'cyl6') %>% .$estimate
+```
+
+**RMarkdown text**
+
+Cars with 6 cylinder engines average `` `r abs(coef_6cyl)` `` lower miles per gallon than 4 cylinder cars.
+
+**Result**
+
+Cars with 6 cylinder engines average 6.92 lower miles per gallon than 4 cylinder cars.
+
+Anatomy of an R Markdown file (.Rmd)
+
+**Chunk options**
+
+-   Global options are set in a code chunk using `opts_knit$set()`
+
+``` r
+opts_knit$set(fig.width  = 6,
+              fig.height = 4,
+              fig.path   = "output/figures/"
+              echo       = FALSE,
+              warnings   = TRUE,
+              messages   = TRUE)
+```
+
+-   Chunk-specific options are set in the chunk header (must all be on one line)
+
+<pre><code>```{r mychunk, echo=TRUE, results='markup'}</code></pre>
+Anatomy of an R Markdown file (.Rmd)
 
 Hands-on Example
 ================
+
+Advanced topics
+===============
+
+-   [Reproducible web documents with R, knitr, & Markdown](http://cpsievert.github.io/slides/markdown/#/)
+
+Useful links
 
 References
 

@@ -19,13 +19,20 @@ ggplot(mtcars, aes(x = hp, y = mpg, color = cyl)) +
 
 **Why reproducible reports**
 
-- Reasons:
-    - Dataset updated
-    - Patients added/removed from analysis
-    - Consistency between tables and text
-    - Changes due to investigator requests
-    - Changes due to reviewer comments
-    - Avoid tedium
+To tie reported statistics to the code that creates them so other researchers
+can understand and verify results.
+
+But really to make your life easier when:
+
+- Datasets updated
+- Patients added/removed from analysis
+- Changes required due to investigator requests
+- Changes required due to reviewer comments
+
+By allowing you to:
+
+- Create consistency between tables and text
+- Avoid tedium
 
 <div class="footer"> Reproducible reporting </div>
 
@@ -44,7 +51,6 @@ ggplot(mtcars, aes(x = hp, y = mpg, color = cyl)) +
     - Focus is the report -- interpretation and results
     - e.g. R Markdown (to PDF, Word, HTML), Rnw/LaTeX to PDF
 
-***TODO: COME BACK TO THIS***
 
 <div class="footer"> Reproducible reporting </div>
 
@@ -73,10 +79,10 @@ ggplot(mtcars, aes(x = hp, y = mpg, color = cyl)) +
 
 ##
 
-**Why R Markdown**
+**Why [R Markdown](http://rmarkdown.rstudio.com/authoring_quick_tour.html)**
 
 - Variety of outputs
-- Variety of coding languages
+- Variety of analysis, data processing, and coding languages
 - Focus on text and analysis, formatting later
 - Simple, but extensible
 - Free Open Source pipeline (\*see Principles of Reproducibility), with options
@@ -87,7 +93,44 @@ ggplot(mtcars, aes(x = hp, y = mpg, color = cyl)) +
 
 ##
 
-- \LaTeX
-- Markdown
+**The process in RStudio**
+
+1. Write an R Markdown file (.Rmd)
+2. Press a button
+3. Get a pretty HTML, Word, or PDF file
+
+<div class="center">
+<img src="lib/images/rstudio-knit.png">
+</div>
+
+- If not using RStudio, use `render()` from the `rmarkdown` package
 
 <div class="footer"> Reproducible reporting </div>
+
+
+##
+
+**The process behind the scenes**
+
+<center>
+<img src="lib/images/RMarkdownFlow.png">
+<img src="lib/images/RMarkdownOutputFormats.png", width=30%>
+</center>
+
+- Both the "knit" button and the `render()` function automate the
+  knitr-to-output pipeline.
+
+<div class="footer"> Reproducible reporting </div>
+
+
+##
+
+**The process behind the scenes**
+
+- The R package [knitr](https://yihui.name/knitr/) converts R code to markdown
+  (or LaTeX) formatted text.
+- The external software [pandoc](https://pandoc.org/) converts the resulting
+  markdown document to the final format of your choice.
+
+<div class="footer"> Reproducible reporting </div>
+

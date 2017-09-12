@@ -1,28 +1,187 @@
 
 ##
 
-**The process**
+**Writing an Rmarkdown file**
 
-R Markdown (markdown + code) -> knitr -> Markdown -> Pandoc -> HTML/Word
-R Markdown (markdown + code) -> knitr -> LaTeX -> pdflatex ->  PDF
+First create a plain text file and save it as a .Rmd file.
 
-<div class="footer"> R Markdown (.Rmd) </div>
+1. Markdown
+2. YAML header
+3. Code -- chunks and inline
+4. [Chunk (knitr) options](https://yihui.name/knitr/options/)
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
 
 ##
 
 **Markdown**
 
-- YAML header
-- Code chunks
+Simple markup language originally designed for quickly making webpages
 
-<div class="footer"> R Markdown (.Rmd) </div>
+```
+### Header 3
+
+- list item 1
+- list item 2
+- list item 3
+
+1. enemated item 1
+1. enemated item 2
+1. enemated item 3
+
+**Bold**, *italicized*, _underlined_ text
+
+```
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
 
 
 ##
 
-**Document structure**
+**Markdown**
 
-- YAML header
-- Code chunks
+Simple markup language originally designed for quickly making webpages
 
-<div class="footer"> R Markdown (.Rmd) </div>
+<div class="lotsoftext">
+### Header 3
+
+- list item 1
+- list item 2
+- list item 3
+
+1. enemated item 1
+1. enemated item 2
+1. enemated item 3
+
+**Bold**, *italicized*, ~~strikethrough~~ text
+
+</div>
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
+
+
+##
+
+**YAML header**
+
+- YAML is a data serialization language.
+- RMarkdown uses it to define document metadata and configuration.
+- Should be at the top of the file and preceded and succeeded by three hyphens.
+
+
+```
+---
+title: "Example Analysis for Reproducible Reporting Workshop"
+author: "Matt Mulvahill"
+date: "September 6, 2017"
+output: word_document
+---
+```
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
+
+## {.codefont}
+
+**Code chunks**
+
+- Started  with three backticks (upper left-most key, below ESC), and open/close
+  curly braces.  Chunk is ended with three backticks.
+- Within curly braces we denote the 'engine'/language ("r"), a name for the code
+  chunk, then any chunk options we want.
+
+
+<pre><code>```{r my_model_fit, echo=TRUE}
+# fit model
+data(mtcars)
+mtcars$cyl <- factor(mtcars$cyl)
+fit <- lm(mpg ~ cyl, data = mtcars)
+```</code></pre>
+<pre><code>```{r my_model_summary, echo = TRUE, results='markdown'}
+# create summary table
+fit %>% broom::tidy(.) %>%
+  mutate_at(vars(estimate:statistic), round, digits=2) %>%
+  mutate_at(vars(p.value), qwraps2::frmtp) %>% 
+  kable
+```</code></pre>
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
+## {.codefont}
+
+**Code chunk example**
+
+```{r my_model_fit, echo=TRUE}
+# fit model
+data(mtcars)
+mtcars$cyl <- factor(mtcars$cyl)
+fit <- lm(mpg ~ cyl, data = mtcars)
+
+# extract and format coefficients table
+coef_table <- fit %>% broom::tidy(.) %>%
+  mutate_at(vars(estimate:statistic), round, digits=2) %>%
+  mutate_at(vars(p.value), qwraps2::frmtp, markup = "markup")
+```
+
+```{r my_model_summary, echo = TRUE, results='markdown'}
+# print formatted coefficients table
+coef_table %>%
+  kable(., "html", table.attr = "class=\"mytable\"",
+        caption = "Table 1. Regression coeffients and related statistics")
+```
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
+## {.codefont}
+
+**Inline code example**
+
+- Inline code begins with a backtick and the engine name (r), and ends with a
+  single backtick
+
+
+```{r prepare-inline-stats, echo=TRUE}
+# Prepare inline stats from table
+coef_6cyl <- coef_table %>% filter(term == 'cyl6') %>% .$estimate
+```
+
+**RMarkdown text**
+
+<div class="lotsoftext">
+```{r, results='asis', echo=FALSE}
+cat("Cars with 6 cylinder engines average `` `r abs(coef_6cyl)` `` lower miles per gallon than 4 cylinder cars.")
+```
+</div>
+
+
+**Result**
+
+Cars with 6 cylinder engines average `r abs(coef_6cyl)` lower miles per gallon
+than 4 cylinder cars.
+
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
+
+##
+
+**Chunk options**
+
+- Global options are set in a code chunk using `opts_knit$set()`
+```{r, eval=FALSE, echo=TRUE}
+opts_knit$set(fig.width  = 6,
+              fig.height = 4,
+              fig.path   = "output/figures/"
+              echo       = FALSE,
+              warnings   = TRUE,
+              messages   = TRUE)
+```
+
+- Chunk-specific options are set in the chunk header (must all be on one line)
+
+<pre><code>```{r mychunk, echo=TRUE, results='markup'}</code></pre>
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
+
