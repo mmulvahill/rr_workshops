@@ -13,7 +13,7 @@
 Materials
 ---------
 
-<http://github.com/mmulvahill/rr_workshops.git>
+<http://github.com/mmulvahill/rr_workshops>
 
 Prereqs -- Software to install
 ------------------------------

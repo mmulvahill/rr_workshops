@@ -54,7 +54,7 @@ knitr::opts_knit$set(eval.after = c("fig.cap"))
 
 ## Materials
 
-http://github.com/mmulvahill/rr_workshops.git
+http://github.com/mmulvahill/rr_workshops
 
 
 
