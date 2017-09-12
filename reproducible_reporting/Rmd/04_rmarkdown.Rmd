@@ -9,6 +9,7 @@ First create a plain text file and save it as a .Rmd file.
 2. YAML header
 3. Code -- chunks and inline
 4. [Chunk (knitr) options](https://yihui.name/knitr/options/)
+5. External code
 
 <div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
 
@@ -120,8 +121,10 @@ mtcars$cyl <- factor(mtcars$cyl)
 fit <- lm(mpg ~ cyl, data = mtcars)
 
 # extract and format coefficients table
-coef_table <- fit %>% broom::tidy(.) %>%
-  mutate_at(vars(estimate:statistic), round, digits=2) %>%
+coef_table <- fit %>% 
+  broom::tidy(., conf.int = TRUE) %>%
+  select(term, estimate, conf.low, conf.high, p.value) %>%
+  mutate_at(vars(estimate:conf.high), round, digits=2) %>%
   mutate_at(vars(p.value), qwraps2::frmtp, markup = "markup")
 ```
 
@@ -138,28 +141,32 @@ coef_table %>%
 
 **Inline code example**
 
+<div class="lotsoftext">
 - Inline code begins with a backtick and the engine name (r), and ends with a
   single backtick
 
 
 ```{r prepare-inline-stats, echo=TRUE}
 # Prepare inline stats from table
-coef_6cyl <- coef_table %>% filter(term == 'cyl6') %>% .$estimate
+abs_coef_6cyl <- coef_table %>% 
+  filter(term == 'cyl6') %>% 
+  mutate_at(vars(estimate:conf.high), abs) %>%
+  with(., paste0(estimate, " (95% CI ", conf.low, ", ", conf.high, "; ",
+                 p.value, ")"))
 ```
 
 **RMarkdown text**
 
-<div class="lotsoftext">
 ```{r, results='asis', echo=FALSE}
-cat("Cars with 6 cylinder engines average `` `r abs(coef_6cyl)` `` lower miles per gallon than 4 cylinder cars.")
+cat("Cars with 6 cylinder engines average `` `r abs_coef_6cyl` `` fewer miles per gallon than 4 cylinder cars.")
 ```
-</div>
 
 
 **Result**
 
-Cars with 6 cylinder engines average `r abs(coef_6cyl)` lower miles per gallon
+Cars with 6 cylinder engines average `r abs_coef_6cyl` fewer miles per gallon
 than 4 cylinder cars.
+</div>
 
 
 <div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
@@ -185,3 +192,19 @@ opts_knit$set(fig.width  = 6,
 
 <div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>
 
+
+
+##
+
+**[External code](https://yihui.name/knitr/demo/externalization/)**
+
+There are two ways to include R code in other files. 
+
+1. `source()` within an R chunk.
+    - Good for executing data cleaning/processing steps. 
+2.
+[`read_chunk()`](https://raw.githubusercontent.com/yihui/knitr-examples/master/113-externalization.Rmd) and [special comments](https://raw.githubusercontent.com/yihui/knitr-examples/master/113-foo.R)
+
+
+
+<div class="footer"> Anatomy of an R Markdown file (.Rmd) </div>

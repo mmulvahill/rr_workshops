@@ -33,6 +33,13 @@ Prereqs -- Software to install
 install.packages(c("rmarkdown", "knitr"))
 ```
 
+Additional tools used in this presentation
+------------------------------------------
+
+``` r
+install.packages(c("tidyverse", "broom", "babynames"))
+```
+
 Defining Reproducibility
 ========================
 
@@ -192,40 +199,52 @@ source("./R/01_clean_data.R")
 
 Scientific computing basics
 
+<!--
+##
+
 **Project structure**
 
-    ## reproducible_reporting/
-    ## ├── build.R
-    ## ├── docs
-    ## │   ├── rmarkdown-cheatsheet-2.0.pdf
-    ## │   └── rmarkdown-reference.pdf
-    ## ├── examples
-    ## │   ├── justmarkdown.html
-    ## │   ├── justmarkdown.md
-    ## │   ├── myexample.docx
-    ## │   └── myexample.Rmd
-    ## ├── lib
-    ## │   ├── images
-    ## │   ├── references.bib
-    ## │   └── styles.css
-    ## ├── output
-    ## │   ├── figures
-    ## │   ├── reporting_presentation.html
-    ## │   └── reporting_presentation.md
-    ## ├── README.md
-    ## ├── reporting_presentation.html
-    ## ├── reporting_presentation.md
-    ## ├── reporting_presentation.Rmd
-    ## ├── reproducible_reporting.Rproj
-    ## └── Rmd
-    ##     ├── 01_introduction.Rmd
-    ##     ├── 02_computing_basics.Rmd
-    ##     ├── 03_intro_to_reporting.Rmd
-    ##     ├── 04_rmarkdown.Rmd
-    ##     ├── 05_rmdexample.Rmd
-    ##     └── 06_advanced.Rmd
-    ## 
-    ## 7 directories, 22 files
+<div class="codefont">
+
+```
+## reproducible_reporting/
+## ├── README.md
+## ├── Rmd
+## │   ├── 01_introduction.Rmd
+## │   ├── 02_computing_basics.Rmd
+## │   ├── 03_intro_to_reporting.Rmd
+## │   ├── 04_rmarkdown.Rmd
+## │   ├── 05_rmdexample.Rmd
+## │   └── 06_advanced.Rmd
+## ├── build.R
+## ├── docs
+## │   ├── rmarkdown-cheatsheet-2.0.pdf
+## │   └── rmarkdown-reference.pdf
+## ├── examples
+## │   ├── justmarkdown.html
+## │   ├── justmarkdown.md
+## │   ├── myexample.Rmd
+## │   ├── myexample.docx
+## │   ├── myexample_forhtml.Rmd
+## │   └── myexample_forhtml.html
+## ├── lib
+## │   ├── images
+## │   ├── references.bib
+## │   └── styles.css
+## ├── output
+## │   ├── figures
+## │   ├── reporting_presentation.html
+## │   └── reporting_presentation.md
+## ├── reporting_presentation.Rmd
+## ├── reporting_presentation.html
+## ├── reporting_presentation.md
+## └── reproducible_reporting.Rproj
+## 
+## 7 directories, 24 files
+```
+</div>
+
+-->
 
 **Project structure**
 
@@ -382,6 +401,7 @@ First create a plain text file and save it as a .Rmd file.
 2.  YAML header
 3.  Code -- chunks and inline
 4.  [Chunk (knitr) options](https://yihui.name/knitr/options/)
+5.  External code
 
 Anatomy of an R Markdown file (.Rmd)
 
@@ -467,8 +487,10 @@ mtcars$cyl <- factor(mtcars$cyl)
 fit <- lm(mpg ~ cyl, data = mtcars)
 
 # extract and format coefficients table
-coef_table <- fit %>% broom::tidy(.) %>%
-  mutate_at(vars(estimate:statistic), round, digits=2) %>%
+coef_table <- fit %>% 
+  broom::tidy(., conf.int = TRUE) %>%
+  select(term, estimate, conf.low, conf.high, p.value) %>%
+  mutate_at(vars(estimate:conf.high), round, digits=2) %>%
   mutate_at(vars(p.value), qwraps2::frmtp, markup = "markup")
 ```
 
@@ -492,10 +514,10 @@ term
 estimate
 </th>
 <th style="text-align:right;">
-std.error
+conf.low
 </th>
 <th style="text-align:right;">
-statistic
+conf.high
 </th>
 <th style="text-align:left;">
 p.value
@@ -511,10 +533,10 @@ p.value
 26.66
 </td>
 <td style="text-align:right;">
-0.97
+24.68
 </td>
 <td style="text-align:right;">
-27.44
+28.65
 </td>
 <td style="text-align:left;">
 P &lt; 0.0001
@@ -528,10 +550,10 @@ cyl6
 -6.92
 </td>
 <td style="text-align:right;">
-1.56
+-10.11
 </td>
 <td style="text-align:right;">
--4.44
+-3.73
 </td>
 <td style="text-align:left;">
 P = 0.0001
@@ -545,10 +567,10 @@ cyl8
 -11.56
 </td>
 <td style="text-align:right;">
-1.30
+-14.22
 </td>
 <td style="text-align:right;">
--8.90
+-8.91
 </td>
 <td style="text-align:left;">
 P &lt; 0.0001
@@ -564,16 +586,20 @@ Anatomy of an R Markdown file (.Rmd)
 
 ``` r
 # Prepare inline stats from table
-coef_6cyl <- coef_table %>% filter(term == 'cyl6') %>% .$estimate
+abs_coef_6cyl <- coef_table %>% 
+  filter(term == 'cyl6') %>% 
+  mutate_at(vars(estimate:conf.high), abs) %>%
+  with(., paste0(estimate, " (95% CI ", conf.low, ", ", conf.high, "; ",
+                 p.value, ")"))
 ```
 
 **RMarkdown text**
 
-Cars with 6 cylinder engines average `` `r abs(coef_6cyl)` `` lower miles per gallon than 4 cylinder cars.
+Cars with 6 cylinder engines average `` `r abs_coef_6cyl` `` fewer miles per gallon than 4 cylinder cars.
 
 **Result**
 
-Cars with 6 cylinder engines average 6.92 lower miles per gallon than 4 cylinder cars.
+Cars with 6 cylinder engines average 6.92 (95% CI 10.11, 3.73; P = 0.0001) fewer miles per gallon than 4 cylinder cars.
 
 Anatomy of an R Markdown file (.Rmd)
 
@@ -595,12 +621,82 @@ opts_knit$set(fig.width  = 6,
 <pre><code>```{r mychunk, echo=TRUE, results='markup'}</code></pre>
 Anatomy of an R Markdown file (.Rmd)
 
+**[External code](https://yihui.name/knitr/demo/externalization/)**
+
+There are two ways to include R code in other files.
+
+1.  `source()` within an R chunk.
+    -   Good for executing data cleaning/processing steps.
+2.  [`read_chunk()`](https://raw.githubusercontent.com/yihui/knitr-examples/master/113-externalization.Rmd) and [special comments](https://raw.githubusercontent.com/yihui/knitr-examples/master/113-foo.R)
+
+Anatomy of an R Markdown file (.Rmd)
+
 Hands-on Example
 ================
 
 Advanced topics
 ===============
 
+**Other languages**
+
+You can include code from other languages in your code chunks.
+
+-   chunk options: `engine='sas'` and `engine.path="C:\\Program Files\\SASHome\\x86\\SASFoundation\\9.3\\sas.exe"`
+
+``` sas
+data _null_;
+put 'Hello, world!';
+run;
+```
+
+-   [Partial list of other languages](https://yihui.name/knitr/demo/engines/)
+-   Note that the workspaces do not carry from one chunk to the next -- data will have to be saved and read in within each chunk.
+
+Advanced topics
+
+**Word Formatting**
+
+-   [Word documents can be customized](http://rmarkdown.rstudio.com/articles_docx.html).
+    -   Creating a docx from a Rmd in RStudio
+    -   Edit the Word document's 'styles'.
+    -   Save the file as reference.docx
+    -   Add reference\_docx option to YAML header
+
+<!-- -->
+
+    output:
+      word_document:  
+        reference_docx: "./lib/reference.docx"
+
+Advanced topics
+
+**Child documents**
+
+-   Separate long documents into separate files and use a master Rmd file to combine them.
+-   See this presentation document: [reporting\_presentation.Rmd](./reporting_presentation.Rmd)
+
+Advanced topics
+
+**Complex tables**
+
+-   Two common approaches
+    -   Constructing your table in a dataframe or matrix, then piping to `kable()`.
+    -   Specialized functions
+        -   [`htmlTables`](https://cran.r-project.org/web/packages/htmlTable/vignettes/general.html) package for HTML
+        -   Hmisc's [`latex()`](https://www.rdocumentation.org/packages/Hmisc/versions/4.0-3/topics/latex) function
+-   New option: [kableExtra package](https://github.com/haozhu233/kableExtra)
+
+Advanced topics
+
+**knitr cache**
+
+-   Long running code can be cached with the `cache=TRUE` chunk option
+
+Advanced topics
+
+-   [RStudio's RMarkdown website](http://rmarkdown.rstudio.com/lesson-1.html)
+-   [knitr's website](https://yihui.name/knitr/)
+-   [Karl Broman's RMarkdown guide](http://kbroman.org/datacarpentry_R_2016-06-01/05-rmarkdown.html)
 -   [Reproducible web documents with R, knitr, & Markdown](http://cpsievert.github.io/slides/markdown/#/)
 
 Useful links

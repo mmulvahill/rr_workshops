@@ -1,13 +1,81 @@
+## 
+
+**Other languages**
+
+You can include code from other languages in your code chunks.
+
+<div class="lotsoftext">
+- chunk options: `engine='sas'` and `engine.path="C:\\Program Files\\SASHome\\x86\\SASFoundation\\9.3\\sas.exe"`
+</div>
+
+```{r hello-world, engine='sas', engine.path="C:\\Program Files\\SASHome\\x86\\SASFoundation\\9.3\\sas.exe", eval=FALSE, echo=TRUE}
+data _null_;
+put 'Hello, world!';
+run;
+```
+
+- [Partial list of other languages](https://yihui.name/knitr/demo/engines/)
+- Note that the workspaces do not carry from one chunk to the next -- data will
+  have to be saved and read in within each chunk.
+
+<div class="footer"> Advanced topics </div>
+
 
 ## 
+
+**Word Formatting**
+
+- [Word documents can be customized](http://rmarkdown.rstudio.com/articles_docx.html).
+    - Creating a docx from a Rmd in RStudio
+    - Edit the Word document's 'styles'.
+    - Save the file as reference.docx
+    - Add reference\_docx option to YAML header
+
+```
+output:
+  word_document:  
+    reference_docx: "./lib/reference.docx"
+```
+
+<div class="footer"> Advanced topics </div>
+
+
+## 
+
 **Child documents**
 
+- Separate long documents into separate files and use a master Rmd file to
+  combine them.
+- See this presentation document:
+  [reporting_presentation.Rmd](./reporting_presentation.Rmd) 
+
+<div class="footer"> Advanced topics </div>
+
+
 ## 
+
 **Complex tables**
 
-## 
-**knitr cache**
+- Two common approaches
+    - Constructing your table in a dataframe or matrix, then piping to
+      `kable()`.
+    - Specialized functions
+        - [`htmlTables`](https://cran.r-project.org/web/packages/htmlTable/vignettes/general.html)
+          package for HTML 
+        - Hmisc's
+          [`latex()`](https://www.rdocumentation.org/packages/Hmisc/versions/4.0-3/topics/latex)
+          function
+
+- New option: [kableExtra package](https://github.com/haozhu233/kableExtra)
+
+<div class="footer"> Advanced topics </div>
 
 ## 
-**Child documents**
+
+**knitr cache**
+
+- Long running code can be cached with the `cache=TRUE` chunk option
+
+<div class="footer"> Advanced topics </div>
+
 

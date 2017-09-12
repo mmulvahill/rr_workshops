@@ -29,7 +29,7 @@
 }
 
 .codefont pre {
-  font-size: 0.65em;
+  font-size: 0.55em;
   line-height: 1.1em;
 }
 
@@ -46,6 +46,6 @@
 }
 
 th, td {
-  padding: 8px;
+  padding: 0px 8px;
   text-align: left;
 }

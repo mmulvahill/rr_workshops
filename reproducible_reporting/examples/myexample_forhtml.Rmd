@@ -3,8 +3,13 @@ title: "Example Analysis for Reproducible Reporting Workshop"
 author: "Matt Mulvahill"
 date: "September 6, 2017"
 output: 
-  word_document:
+  html_document:
     highlight: "tango"
+    theme: simplex
+    toc: true
+    toc_float: 
+      collapsed: false
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
@@ -58,5 +63,7 @@ matts %>%
   geom_path() +
   geom_vline(xintercept = 1983)
 ```
+
+
 
 

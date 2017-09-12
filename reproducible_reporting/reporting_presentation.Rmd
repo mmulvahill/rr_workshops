@@ -75,6 +75,12 @@ http://github.com/mmulvahill/rr_workshops.git
 install.packages(c("rmarkdown", "knitr"))
 ```
 
+## Additional tools used in this presentation
+
+```{r addl-pkgs, eval=FALSE, echo=TRUE}
+install.packages(c("tidyverse", "broom", "babynames"))
+```
+
 
 # Defining Reproducibility
 
@@ -103,13 +109,18 @@ install.packages(c("rmarkdown", "knitr"))
 
 # Advanced topics
 
-```{r rmdexample, child="Rmd/05_rmdexample.Rmd"}
+```{r rmdexample, child="Rmd/06_advanced.Rmd"}
 ```
 
 
 ## 
 
+- [RStudio's RMarkdown website](http://rmarkdown.rstudio.com/lesson-1.html)
+- [knitr's website](https://yihui.name/knitr/)
+- [Karl Broman's RMarkdown
+  guide](http://kbroman.org/datacarpentry_R_2016-06-01/05-rmarkdown.html)
 - [Reproducible web documents with R, knitr, & Markdown](http://cpsievert.github.io/slides/markdown/#/)
+
 
 <div class="footer"> Useful links </div>
 

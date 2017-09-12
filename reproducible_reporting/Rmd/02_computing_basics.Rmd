@@ -67,6 +67,7 @@ source("./R/01_clean_data.R")
 <div class="footer"> Scientific computing basics </div>
 
 
+<!--
 ##
 
 **Project structure**
@@ -78,6 +79,7 @@ tree -L 2 reproducible_reporting/
 ```
 </div>
 
+-->
 
 ##
 
